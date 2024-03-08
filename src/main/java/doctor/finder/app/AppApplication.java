@@ -25,7 +25,10 @@ public class AppApplication implements CommandLineRunner {
     @Autowired
     private final HospitalRepository hospitalRepository;
 
-    public AppApplication(RoleRepository repository, DoctorRepository doctorRepository, PatientRepository patientRepository, HospitalRepository hospitalRepository) {
+    public AppApplication(RoleRepository repository,
+                          DoctorRepository doctorRepository,
+                          PatientRepository patientRepository,
+                          HospitalRepository hospitalRepository) {
         this.repository = repository;
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
@@ -64,7 +67,6 @@ public class AppApplication implements CommandLineRunner {
         doctorUser.setPassword("123456");
         doctorUser.setRoles(Set.of(doctorRole));
         doctorUser.setHospital(hospital);
-
 
         Patient patientUser = new Patient();
         patientUser.setEmail("pat@i.ua");
