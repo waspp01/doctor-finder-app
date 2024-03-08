@@ -12,7 +12,6 @@ import java.util.Set;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "doctors")
