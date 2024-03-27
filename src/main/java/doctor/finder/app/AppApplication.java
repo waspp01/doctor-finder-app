@@ -1,9 +1,11 @@
 package doctor.finder.app;
 
+import doctor.finder.app.model.Address;
 import doctor.finder.app.model.Hospital;
 import doctor.finder.app.model.Role;
 import doctor.finder.app.model.user.Doctor;
 import doctor.finder.app.model.user.Patient;
+import doctor.finder.app.repository.AddressRepository;
 import doctor.finder.app.repository.HospitalRepository;
 import doctor.finder.app.repository.RoleRepository;
 import doctor.finder.app.repository.user.DoctorRepository;
@@ -24,15 +26,19 @@ public class AppApplication implements CommandLineRunner {
     private final PatientRepository patientRepository;
     @Autowired
     private final HospitalRepository hospitalRepository;
+    @Autowired
+    private final AddressRepository addressRepository;
 
     public AppApplication(RoleRepository repository,
                           DoctorRepository doctorRepository,
                           PatientRepository patientRepository,
-                          HospitalRepository hospitalRepository) {
+                          HospitalRepository hospitalRepository,
+                          AddressRepository addressRepository) {
         this.repository = repository;
         this.doctorRepository = doctorRepository;
         this.patientRepository = patientRepository;
         this.hospitalRepository = hospitalRepository;
+        this.addressRepository = addressRepository;
     }
 
     public static void main(String[] args) {
@@ -56,9 +62,20 @@ public class AppApplication implements CommandLineRunner {
         repository.save(patientRole);
         repository.save(doctorRole);
 
+        Address address = new Address();
+        address.setCity("Chemnitz");
+        address.setPostalCode("0000");
+        address.setCountry("Germany");
+        address.setStreet("Wolgograder Allee");
+        address.setHouseNumber("100");
+        addressRepository.save(address);
+
         Hospital hospital = new Hospital();
         hospital.setName("hospital");
+        hospital.setAddress(address);
         hospitalRepository.save(hospital);
+
+        Set<Hospital> hospitals = Set.of(hospital);
 
         Doctor doctorUser = new Doctor();
         doctorUser.setEmail("doc@i.ua");
@@ -66,15 +83,23 @@ public class AppApplication implements CommandLineRunner {
         doctorUser.setLastName("docLastName");
         doctorUser.setPassword("123456");
         doctorUser.setRoles(Set.of(doctorRole));
-        doctorUser.setHospital(hospital);
+        doctorUser.setHospitals(hospitals);
+
+        Address address1 = new Address();
+        address1.setCountry("Ger");
+        address1.setCity("Chem");
+        address1.setPostalCode("1111");
+        address1.setStreet("Wolg");
+        address1.setHouseNumber("111");
+        address1 = addressRepository.save(address1);
 
         Patient patientUser = new Patient();
         patientUser.setEmail("pat@i.ua");
         patientUser.setPassword("123456");
         patientUser.setFirstName("firstname");
         patientUser.setLastName("lastname");
-        patientUser.setAddress("pat address");
         patientUser.setRoles(Set.of(patientRole));
+        patientUser.setAddress(address1);
 
         patientRepository.save(patientUser);
         doctorRepository.save(doctorUser);

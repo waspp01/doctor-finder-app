@@ -3,7 +3,6 @@ package doctor.finder.app.model.user;
 import doctor.finder.app.model.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,7 +39,7 @@ public abstract class User {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     private Set<Role> roles;
 
     @Column(name = "is_deleted", nullable = false)
