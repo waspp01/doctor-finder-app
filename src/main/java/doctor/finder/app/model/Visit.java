@@ -11,9 +11,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "visits")
+@Data
+@SQLDelete(sql = "UPDATE categories SET is_deleted = true WHERE id=?")
+@Where(clause = "is_deleted=false")
+@NoArgsConstructor
 public class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +35,16 @@ public class Visit {
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
+    @ManyToOne
+    @JoinColumn(name = "hospital_id")
+    private Hospital hospital;
+
     @Column(name = "date_time", nullable = false)
     private LocalDateTime dateTime;
 
+    private String comments;
+
     private boolean isBooked = false;
+
+    private boolean isDeleted = false;
 }

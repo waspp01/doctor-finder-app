@@ -2,8 +2,6 @@ package doctor.finder.app.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,25 +12,31 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Data
-@Table(name = "roles")
+@Table(name = "specializations")
 @SQLDelete(sql = "UPDATE roles SET is_deleted = true WHERE id=?")
 @Where(clause = "is_deleted=false")
-public class Role {
+public class Specialization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    @Enumerated(value = EnumType.STRING)
-    private RoleName name;
+    @Column(name = "name", nullable = false)
+    private SpecializationName name;
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 
-    public enum RoleName {
-        PATIENT,
-        ADMIN,
-        DOCTOR,
-        HOSPITAL_ADMIN
+    public enum SpecializationName {
+        FAMILY_DOCTOR,
+        CARDIOLOGIST,
+        DERMATOLOGIST,
+        GASTROENTEROLOGIST,
+        NEUROLOGIST,
+        ONCOLOGIST,
+        ORTHOPEDIC_SURGEON,
+        PEDIATRICIAN,
+        PSYCHIATRIST,
+        RADIOLOGIST,
+        UROLOGIST
     }
 }
