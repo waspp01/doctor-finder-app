@@ -1,17 +1,11 @@
 package doctor.finder.app;
 
-import doctor.finder.app.model.Address;
-import doctor.finder.app.model.Hospital;
 import doctor.finder.app.model.Role;
-import doctor.finder.app.model.user.Doctor;
-import doctor.finder.app.model.user.Patient;
-import doctor.finder.app.model.user.User;
 import doctor.finder.app.repository.AddressRepository;
 import doctor.finder.app.repository.HospitalRepository;
 import doctor.finder.app.repository.RoleRepository;
 import doctor.finder.app.repository.user.DoctorRepository;
 import doctor.finder.app.repository.user.PatientRepository;
-import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -62,48 +56,6 @@ public class AppApplication implements CommandLineRunner {
         repository.save(adminRole);
         repository.save(patientRole);
         repository.save(doctorRole);
-//
-//        Address address = new Address();
-//        address.setCity("Chemnitz");
-//        address.setPostalCode("0000");
-//        address.setCountry("Germany");
-//        address.setStreet("Wolgograder Allee");
-//        address.setHouseNumber("100");
-//        addressRepository.save(address);
-//
-//        Hospital hospital = new Hospital();
-//        hospital.setName("hospital");
-//        hospital.setAddress(address);
-//        hospitalRepository.save(hospital);
-//
-//        Set<Hospital> hospitals = Set.of(hospital);
-//
-//        Doctor doctorUser = new Doctor();
-//        doctorUser.setEmail("doc@i.ua");
-//        doctorUser.setFirstName("docName");
-//        doctorUser.setLastName("docLastName");
-//        doctorUser.setPassword("123456");
-//        doctorUser.setRoles(Set.of(doctorRole));
-//        doctorUser.setHospitals(hospitals);
-//
-//        Address address1 = new Address();
-//        address1.setCountry("Ger");
-//        address1.setCity("Chem");
-//        address1.setPostalCode("1111");
-//        address1.setStreet("Wolg");
-//        address1.setHouseNumber("111");
-//        address1 = addressRepository.save(address1);
-//
-//        Patient patientUser = new Patient();
-//        patientUser.setEmail("pat@i.ua");
-//        patientUser.setPassword("123456");
-//        patientUser.setFirstName("firstname");
-//        patientUser.setLastName("lastname");
-//        patientUser.setRoles(Set.of(patientRole));
-//        patientUser.setAddress(address1);
-//
-//        patientRepository.save(patientUser);
-//        doctorRepository.save(doctorUser);
 
     }
 }

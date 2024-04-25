@@ -4,7 +4,6 @@ import doctor.finder.app.config.MapperConfig;
 import doctor.finder.app.dto.user.UserRegistrationRequestDto;
 import doctor.finder.app.dto.user.UserResponseDto;
 import doctor.finder.app.model.user.Patient;
-import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
