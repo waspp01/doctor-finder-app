@@ -1,12 +1,12 @@
 package doctor.finder.app.repository.user;
 
-import doctor.finder.app.model.user.Doctor;
+import doctor.finder.app.model.user.HospitalAdmin;
 import java.util.Optional;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DoctorRepository extends JpaRepository<Doctor, UUID> {
+public interface HospitalAdminRepository extends JpaRepository<HospitalAdmin, UUID> {
     @EntityGraph(attributePaths = "roles")
-    Optional<Doctor> findByEmail(String email);
+    Optional<HospitalAdmin> findByEmail(String email);
 }
